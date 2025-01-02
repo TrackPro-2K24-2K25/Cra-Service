@@ -5,10 +5,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import org.youcode.trackprocraservice.domain.enums.Status;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.time.YearMonth;
+import java.util.*;
 
 public class Timesheet {
 
@@ -28,6 +26,14 @@ public class Timesheet {
     @Enumerated(EnumType.STRING)
     private Status status;
 
+    @ManyToOne(cascade = CascadeType.PERSIST)  // Or appropriate cascade type
+    @JoinColumn(name = "collaborator_id")
+    private AppUser collaborateur;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "manager_id")
+    private AppUser manager;
+
     @Getter
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
@@ -36,6 +42,32 @@ public class Timesheet {
             inverseJoinColumns = {@JoinColumn(name = "file_id", referencedColumnName = "id")}
     )
     private List<File> files = new ArrayList<>();
+
+    @ElementCollection
+    @MapKeyColumn(name = "day")
+    @Column(name = "value")
+    private Map<String, String> valeur_jour = new HashMap<>();
+
+    public Timesheet() {
+        initializeDayValuesForMonth();
+    }
+
+    private void initializeDayValuesForMonth() {
+        Calendar calendar = Calendar.getInstance();
+        if (date != null) {
+            calendar.setTime(date);
+        }
+
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH) + 1;
+        YearMonth yearMonth = YearMonth.of(year, month);
+        int daysInMonth = yearMonth.lengthOfMonth();
+
+
+        for (int day = 1; day <= daysInMonth; day++) {
+            valeur_jour.put("day" + day, "");
+        }
+    }
 
 
 
