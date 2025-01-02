@@ -68,12 +68,13 @@ public class Mission {
     @OneToMany(mappedBy = "paymentTerm") // MappedBy refers to the field in Mission referencing PaymentTerm
     private List<Mission> missions;
 
+    @ManyToOne
+    @JoinColumn(name = "supplier_admin_id")
+    private AppUser supplierAdmin;
 
-//    @Column(name = "supplierAdminId")
-//    private UUID supplierAdminId;
-//
-//    @Column(name = "collaboratorId")
-//    private UUID collaboratorId;
+    @ManyToOne
+    @JoinColumn(name = "collaborateur_id")
+    private AppUser collaborateur;
 
     @ManyToOne
     @JoinColumn(name = "bankAccountId")
