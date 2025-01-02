@@ -73,6 +73,9 @@ public class Company {
 
     // to add manager id
 
+    @ManyToOne
+    @JoinColumn(name = "manager_id" , nullable = true)
+    private AppUser manager;
 
 
 
