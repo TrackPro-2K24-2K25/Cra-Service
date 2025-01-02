@@ -1,0 +1,20 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1735850185235-1
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_invoicingcurrency
+                  name: id
+                  type: UUID
+              - column:
+                  name: value
+                  type: VARCHAR(255)
+            tableName: invoicing_currency
+

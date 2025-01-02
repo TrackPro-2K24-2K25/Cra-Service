@@ -1,0 +1,140 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1735850526394-1
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_appuser
+                  name: id
+                  type: UUID
+              - column:
+                  name: first_name
+                  type: VARCHAR(255)
+              - column:
+                  name: last_name
+                  type: VARCHAR(255)
+              - column:
+                  name: email
+                  type: VARCHAR(255)
+              - column:
+                  name: username
+                  type: VARCHAR(255)
+              - column:
+                  name: password
+                  type: VARCHAR(255)
+              - column:
+                  name: role
+                  type: VARCHAR(255)
+              - column:
+                  name: phone_number
+                  type: VARCHAR(255)
+              - column:
+                  name: alternative_email
+                  type: VARCHAR(255)
+              - column:
+                  name: street_address
+                  type: VARCHAR(255)
+              - column:
+                  name: city
+                  type: VARCHAR(255)
+              - column:
+                  name: state
+                  type: VARCHAR(255)
+              - column:
+                  name: postal_code
+                  type: VARCHAR(255)
+              - column:
+                  name: country
+                  type: VARCHAR(255)
+              - column:
+                  name: profile_picture_url
+                  type: VARCHAR(255)
+              - column:
+                  name: bio
+                  type: VARCHAR(255)
+              - column:
+                  name: website
+                  type: VARCHAR(255)
+              - column:
+                  name: gender
+                  type: VARCHAR(255)
+              - column:
+                  name: date_of_birth
+                  type: DATETIME
+              - column:
+                  name: account_status
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: is_email_verified
+                  type: BOOLEAN
+              - column:
+                  constraints:
+                    nullable: false
+                  name: is_phone_verified
+                  type: BOOLEAN
+              - column:
+                  constraints:
+                    nullable: false
+                  name: is_two_factor_enabled
+                  type: BOOLEAN
+              - column:
+                  constraints:
+                    nullable: false
+                  name: is_terms_accepted
+                  type: BOOLEAN
+              - column:
+                  name: preferred_language
+                  type: VARCHAR(255)
+              - column:
+                  name: security_question
+                  type: VARCHAR(255)
+              - column:
+                  name: security_answer
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: is_locked
+                  type: BOOLEAN
+              - column:
+                  constraints:
+                    nullable: false
+                  name: failed_login_attempts
+                  type: INT
+              - column:
+                  name: created_at
+                  type: VARCHAR(255)
+              - column:
+                  name: updated_at
+                  type: VARCHAR(255)
+              - column:
+                  name: last_login_at
+                  type: VARCHAR(255)
+            tableName: app_user
+  - changeSet:
+      id: 1735850526394-2
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addUniqueConstraint:
+            columnNames: email
+            constraintName: uc_appuser_email
+            tableName: app_user
+  - changeSet:
+      id: 1735850526394-3
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addUniqueConstraint:
+            columnNames: username
+            constraintName: uc_appuser_username
+            tableName: app_user
+

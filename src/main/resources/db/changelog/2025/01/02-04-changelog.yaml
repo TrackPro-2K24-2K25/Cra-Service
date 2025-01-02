@@ -1,0 +1,41 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1735850230380-1
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_invoicing_conditions
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: payment_terms
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: discount
+                  type: DOUBLE
+              - column:
+                  constraints:
+                    nullable: false
+                  name: days_for_discount
+                  type: INT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: late_fee_rate
+                  type: DOUBLE
+              - column:
+                  constraints:
+                    nullable: false
+                  name: is_active
+                  type: BOOLEAN
+            tableName: invoicing_conditions
+

@@ -1,0 +1,187 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1735851500508-1
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_timesheet
+                  name: id
+                  type: UUID
+              - column:
+                  name: date
+                  type: DATETIME
+              - column:
+                  name: status
+                  type: VARCHAR(255)
+              - column:
+                  name: collaborator_id
+                  type: UUID
+              - column:
+                  name: manager_id
+                  type: UUID
+            tableName: timesheet
+  - changeSet:
+      id: 1735851500508-2
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  name: timesheet_id
+                  type: UUID
+              - column:
+                  name: jour
+                  type: DATETIME
+              - column:
+                  name: text
+                  type: VARCHAR(255)
+            tableName: timesheet_comments
+  - changeSet:
+      id: 1735851500508-3
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  name: file_id
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                  name: timesheet_id
+                  type: UUID
+            tableName: timesheet_fichiers
+  - changeSet:
+      id: 1735851500508-4
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  name: timesheet_id
+                  type: UUID
+              - column:
+                  name: day
+                  type: INT
+              - column:
+                  name: period
+                  type: VARCHAR(255)
+            tableName: timesheet_selected_periods
+  - changeSet:
+      id: 1735851500508-5
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_timesheet_valeur_jour
+                  name: timesheet_id
+                  type: UUID
+              - column:
+                  name: value
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_timesheet_valeur_jour
+                  name: day
+                  type: VARCHAR(255)
+            tableName: timesheet_valeur_jour
+  - changeSet:
+      id: 1735851500508-6
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: collaborator_id
+            baseTableName: timesheet
+            constraintName: FK_TIMESHEET_ON_COLLABORATOR
+            referencedColumnNames: id
+            referencedTableName: app_user
+  - changeSet:
+      id: 1735851500508-7
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: manager_id
+            baseTableName: timesheet
+            constraintName: FK_TIMESHEET_ON_MANAGER
+            referencedColumnNames: id
+            referencedTableName: app_user
+  - changeSet:
+      id: 1735851500508-8
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: timesheet_id
+            baseTableName: timesheet_comments
+            constraintName: fk_timesheet_comments_on_timesheet
+            referencedColumnNames: id
+            referencedTableName: timesheet
+  - changeSet:
+      id: 1735851500508-9
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: timesheet_id
+            baseTableName: timesheet_selected_periods
+            constraintName: fk_timesheet_selectedperiods_on_timesheet
+            referencedColumnNames: id
+            referencedTableName: timesheet
+  - changeSet:
+      id: 1735851500508-10
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: timesheet_id
+            baseTableName: timesheet_valeur_jour
+            constraintName: fk_timesheet_valeur_jour_on_timesheet
+            referencedColumnNames: id
+            referencedTableName: timesheet
+  - changeSet:
+      id: 1735851500508-11
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: file_id
+            baseTableName: timesheet_fichiers
+            constraintName: fk_timfic_on_file
+            referencedColumnNames: id
+            referencedTableName: files
+  - changeSet:
+      id: 1735851500508-12
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: timesheet_id
+            baseTableName: timesheet_fichiers
+            constraintName: fk_timfic_on_timesheet
+            referencedColumnNames: id
+            referencedTableName: timesheet
+

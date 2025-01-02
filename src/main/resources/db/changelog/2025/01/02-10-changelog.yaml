@@ -1,0 +1,120 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1735851482271-1
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  name: expense_report_id
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                  name: id
+                  type: UUID
+            tableName: expense_report_files
+  - changeSet:
+      id: 1735851482271-2
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_expense_reports
+                  name: id
+                  type: UUID
+              - column:
+                  name: description
+                  type: VARCHAR(255)
+              - column:
+                  name: travel_amount
+                  type: BIGINT
+              - column:
+                  name: accommodation_amount
+                  type: BIGINT
+              - column:
+                  name: meal_amount
+                  type: BIGINT
+              - column:
+                  name: other_amount
+                  type: BIGINT
+              - column:
+                  name: status
+                  type: VARCHAR(255)
+              - column:
+                  name: mission_id
+                  type: UUID
+              - column:
+                  name: submission_date
+                  type: DATE
+              - column:
+                  name: collaborator_id
+                  type: UUID
+              - column:
+                  name: manager_id
+                  type: UUID
+            tableName: expense_reports
+  - changeSet:
+      id: 1735851482271-3
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: collaborator_id
+            baseTableName: expense_reports
+            constraintName: FK_EXPENSE_REPORTS_ON_COLLABORATOR
+            referencedColumnNames: id
+            referencedTableName: app_user
+  - changeSet:
+      id: 1735851482271-4
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: manager_id
+            baseTableName: expense_reports
+            constraintName: FK_EXPENSE_REPORTS_ON_MANAGER
+            referencedColumnNames: id
+            referencedTableName: app_user
+  - changeSet:
+      id: 1735851482271-5
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: mission_id
+            baseTableName: expense_reports
+            constraintName: FK_EXPENSE_REPORTS_ON_MISSION
+            referencedColumnNames: id
+            referencedTableName: mission
+  - changeSet:
+      id: 1735851482271-6
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: expense_report_id
+            baseTableName: expense_report_files
+            constraintName: fk_exprepfil_on_expense_report
+            referencedColumnNames: id
+            referencedTableName: expense_reports
+  - changeSet:
+      id: 1735851482271-7
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: id
+            baseTableName: expense_report_files
+            constraintName: fk_exprepfil_on_file
+            referencedColumnNames: id
+            referencedTableName: files
+
