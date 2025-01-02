@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.youcode.trackprocraservice.domain.embeddables.*;
 import org.youcode.trackprocraservice.domain.enums.AccountStatus;
 import org.youcode.trackprocraservice.domain.enums.Role;
 

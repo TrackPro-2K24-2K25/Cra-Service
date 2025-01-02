@@ -1,4 +1,4 @@
-package org.youcode.trackprocraservice.domain.entities;
+package org.youcode.trackprocraservice.domain.embeddables;
 
 import jakarta.persistence.Embeddable;
 import lombok.*;

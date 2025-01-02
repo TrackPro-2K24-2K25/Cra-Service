@@ -2,12 +2,21 @@ package org.youcode.trackprocraservice.domain.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.youcode.trackprocraservice.domain.embeddables.Comments;
+import org.youcode.trackprocraservice.domain.embeddables.WorkPeriod;
 import org.youcode.trackprocraservice.domain.enums.Status;
 
 import java.time.YearMonth;
 import java.util.*;
 
+@Getter
+@Setter
+@Entity
+@AllArgsConstructor
 public class Timesheet {
 
     @Id
