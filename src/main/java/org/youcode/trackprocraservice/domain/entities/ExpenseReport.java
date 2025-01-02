@@ -40,6 +40,13 @@ public class ExpenseReport { // Translated entity name
     @Column(name = "submission_date")
     private LocalDate submissionDate = LocalDate.now();
 
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "collaborator_id")
+    private AppUser collaborateur;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "manager_id")
+    private AppUser manager;
 
     @Getter
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE})
