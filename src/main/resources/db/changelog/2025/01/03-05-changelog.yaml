@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 1735850612990-1
+      id: 1735913748458-1
       author: Youcode
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
@@ -74,7 +74,7 @@ databaseChangeLog:
                   type: UUID
             tableName: company
   - changeSet:
-      id: 1735850612990-2
+      id: 1735913748458-2
       author: Youcode
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
@@ -85,7 +85,7 @@ databaseChangeLog:
             referencedColumnNames: id
             referencedTableName: invoicing_conditions
   - changeSet:
-      id: 1735850612990-3
+      id: 1735913748458-3
       author: Youcode
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
@@ -96,7 +96,7 @@ databaseChangeLog:
             referencedColumnNames: id
             referencedTableName: invoicing_currency
   - changeSet:
-      id: 1735850612990-4
+      id: 1735913748458-4
       author: Youcode
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
@@ -107,7 +107,7 @@ databaseChangeLog:
             referencedColumnNames: id
             referencedTableName: payment_term
   - changeSet:
-      id: 1735850612990-5
+      id: 1735913748458-5
       author: Youcode
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:

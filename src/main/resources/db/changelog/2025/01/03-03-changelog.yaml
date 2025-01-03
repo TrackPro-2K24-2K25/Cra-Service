@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 1735850949124-1
+      id: 1735913679209-1
       author: Youcode
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
@@ -10,17 +10,11 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     primaryKey: true
-                    primaryKeyName: pk_files
+                    primaryKeyName: pk_invoicingcurrency
                   name: id
                   type: UUID
               - column:
-                  name: name
+                  name: value
                   type: VARCHAR(255)
-              - column:
-                  name: content_type
-                  type: VARCHAR(255)
-              - column:
-                  name: url
-                  type: VARCHAR(255)
-            tableName: files
+            tableName: invoicing_currency
 

@@ -1,23 +1,30 @@
 spring:
-  flyway:
-    baseline-on-migrate: true
-
+  datasource:
+    url: jdbc:postgresql://localhost:5432/trackpro
+    username: ${DB_USERNAME:trackpro}
+    password: ${DB_PASSWORD:trackpro}
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 20
+      max-lifetime: 1800000
+      auto-commit: true
+      connection-timeout: 30000
   jpa:
     properties:
       hibernate:
         default_schema: public
-        hbm2ddl:
-          auto: update
-
-
-  liquibase:
-    enabled: true
-    change-log: db/changelog/master.yaml
-
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: validate
   docker:
     compose:
-      file: src/main/docker/compose.yaml
+      file: src/main/docker/docker-compose.yml
       enabled: true
-      lifecycle-management: start_only
+
 server:
   port: 8980
+
+logging:
+  level:
+    root: INFO
+    org.springframework: DEBUG

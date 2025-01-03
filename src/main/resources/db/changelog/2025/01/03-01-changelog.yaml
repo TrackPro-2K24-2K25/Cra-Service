@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 1735850097009-1
+      id: 1735913590423-1
       author: Youcode
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:

@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 1735850526394-1
+      id: 1735913723220-1
       author: Youcode
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
@@ -120,7 +120,7 @@ databaseChangeLog:
                   type: VARCHAR(255)
             tableName: app_user
   - changeSet:
-      id: 1735850526394-2
+      id: 1735913723220-2
       author: Youcode
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
@@ -129,7 +129,7 @@ databaseChangeLog:
             constraintName: uc_appuser_email
             tableName: app_user
   - changeSet:
-      id: 1735850526394-3
+      id: 1735913723220-3
       author: Youcode
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:

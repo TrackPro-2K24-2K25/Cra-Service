@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/2025/01/03-01-changelog.yaml
+  - include:
+      file: db/changelog/2025/01/03-02-changelog.yaml
+  - include:
+      file: db/changelog/2025/01/03-03-changelog.yaml
+  - include:
+      file: db/changelog/2025/01/03-04-changelog.yaml
+  - include:
+      file: db/changelog/2025/01/03-05-changelog.yaml
+  - include:
+      file: db/changelog/2025/01/03-06-changelog.yaml
+  - include:
+      file: db/changelog/2025/01/03-07-changelog.yaml
+  - include:
+      file: db/changelog/2025/01/03-08-changelog.yaml
+  - include:
+      file: db/changelog/2025/01/03-09-changelog.yaml
+  - include:
+      file: db/changelog/2025/01/03-10-changelog.yaml
+  - include:
+      file: db/changelog/2025/01/03-11-changelog.yaml

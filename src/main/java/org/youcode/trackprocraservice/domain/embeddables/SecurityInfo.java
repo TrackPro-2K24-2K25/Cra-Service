@@ -10,7 +10,14 @@ import lombok.*;
 @AllArgsConstructor
 public class SecurityInfo {
     private String securityQuestion;
-    private String securityAnswer;  // Make sure to hash this if sensitive
+    private String securityAnswer;
     private boolean isLocked;
     private int failedLoginAttempts;
+
+    // Custom getter for isLocked to follow the JavaBean convention
+    public boolean isLocked() {
+        return isLocked;
+    }
 }
+
+

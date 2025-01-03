@@ -1,39 +1,30 @@
 package org.youcode.trackprocraservice.domain.entities;
 
-
 import jakarta.persistence.*;
 import lombok.*;
-import org.antlr.v4.runtime.misc.NotNull;
 import org.youcode.trackprocraservice.domain.enums.TimeUnit;
 
 import java.sql.Date;
 import java.util.List;
 import java.util.UUID;
 
-@Getter
-@Setter
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "mission")
 public class Mission {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
 
     @Column(name = "title", nullable = false)
     private String title;
 
-
-
-    @Column(name = "reference", nullable = false) // Assuming "porte" means "reference"
+    @Column(name = "reference", nullable = false)
     private String reference;
-
 
     @Column(name = "fees", nullable = false)
     private Double fees;
-
 
     @Enumerated(EnumType.STRING)
     @Column(name = "timeUnit", nullable = false)
@@ -42,7 +33,6 @@ public class Mission {
     @Column(name = "mission_duration", nullable = false)
     private Integer missionDuration;
 
-    @NotNull
     @Temporal(TemporalType.DATE)
     @Column(name = "startDate", nullable = false)
     private Date startDate;
@@ -64,16 +54,16 @@ public class Mission {
     @JoinColumn(name = "company_id")
     private Company company;
 
-
-    @OneToMany(mappedBy = "paymentTerm") // MappedBy refers to the field in Mission referencing PaymentTerm
-    private List<Mission> missions;
+    @ManyToOne
+    @JoinColumn(name = "paymentTermId")
+    private PaymentTerm paymentTerm;
 
     @ManyToOne
     @JoinColumn(name = "supplier_admin_id")
     private AppUser supplierAdmin;
 
     @ManyToOne
-    @JoinColumn(name = "collaborateur_id")
+    @JoinColumn(name = "collaborateur_id", nullable = true) // Nullable as needed
     private AppUser collaborateur;
 
     @ManyToOne
@@ -81,17 +71,10 @@ public class Mission {
     private BankAccount bankAccount;
 
     @ManyToOne
-    @JoinColumn(name = "paymentTermId")
-    private PaymentTerm paymentTerm;
-
-    @ManyToOne
     @JoinColumn(name = "invoicingConditionId")
     private InvoicingConditions invoicingCondition;
 
-   @ManyToOne
-   @JoinColumn(name = "serviceContractId")
-   private ServiceContract serviceContract;
-
-
-
+    @ManyToOne
+    @JoinColumn(name = "serviceContractId")
+    private ServiceContract serviceContract;
 }
