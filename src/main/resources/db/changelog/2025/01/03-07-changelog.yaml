@@ -1,0 +1,161 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1735913787510-1
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_mission
+                  name: id
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                  name: title
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: reference
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: fees
+                  type: DOUBLE
+              - column:
+                  constraints:
+                    nullable: false
+                  name: time_unit
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: mission_duration
+                  type: INT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: start_date
+                  type: DATE
+              - column:
+                  constraints:
+                    nullable: false
+                  name: end_date
+                  type: DATE
+              - column:
+                  constraints:
+                    nullable: false
+                  name: non_renewable
+                  type: BOOLEAN
+              - column:
+                  name: final_client
+                  type: BOOLEAN
+              - column:
+                  name: invoice_recipient
+                  type: BOOLEAN
+              - column:
+                  name: company_id
+                  type: UUID
+              - column:
+                  name: supplier_admin_id
+                  type: UUID
+              - column:
+                  name: collaborateur_id
+                  type: UUID
+              - column:
+                  name: bank_account_id
+                  type: UUID
+              - column:
+                  name: payment_term_id
+                  type: UUID
+              - column:
+                  name: invoicing_condition_id
+                  type: BIGINT
+              - column:
+                  name: service_contract_id
+                  type: UUID
+            tableName: mission
+  - changeSet:
+      id: 1735913787510-2
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: bank_account_id
+            baseTableName: mission
+            constraintName: FK_MISSION_ON_BANKACCOUNTID
+            referencedColumnNames: id
+            referencedTableName: bank_account
+  - changeSet:
+      id: 1735913787510-3
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: collaborateur_id
+            baseTableName: mission
+            constraintName: FK_MISSION_ON_COLLABORATEUR
+            referencedColumnNames: id
+            referencedTableName: app_user
+  - changeSet:
+      id: 1735913787510-4
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: company_id
+            baseTableName: mission
+            constraintName: FK_MISSION_ON_COMPANY
+            referencedColumnNames: id
+            referencedTableName: company
+  - changeSet:
+      id: 1735913787510-5
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: invoicing_condition_id
+            baseTableName: mission
+            constraintName: FK_MISSION_ON_INVOICINGCONDITIONID
+            referencedColumnNames: id
+            referencedTableName: invoicing_conditions
+  - changeSet:
+      id: 1735913787510-6
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: payment_term_id
+            baseTableName: mission
+            constraintName: FK_MISSION_ON_PAYMENTTERMID
+            referencedColumnNames: id
+            referencedTableName: payment_term
+  - changeSet:
+      id: 1735913787510-7
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: service_contract_id
+            baseTableName: mission
+            constraintName: FK_MISSION_ON_SERVICECONTRACTID
+            referencedColumnNames: id
+            referencedTableName: service_contracts
+  - changeSet:
+      id: 1735913787510-8
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: supplier_admin_id
+            baseTableName: mission
+            constraintName: FK_MISSION_ON_SUPPLIER_ADMIN
+            referencedColumnNames: id
+            referencedTableName: app_user
+

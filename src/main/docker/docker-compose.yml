@@ -1,0 +1,13 @@
+name: TrackPro
+version: '3.8'
+
+services:
+  postgres:
+    image: 'postgres:17'
+    environment:
+      - 'POSTGRES_DB=trackpro'        # New database name
+      - 'POSTGRES_PASSWORD=trackpro' # Database password
+      - 'POSTGRES_USER=trackpro'
+    ports:
+      - '5432:5432'                  # Expose PostgreSQL port
+

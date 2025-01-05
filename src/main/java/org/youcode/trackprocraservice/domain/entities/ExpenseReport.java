@@ -10,12 +10,13 @@ import java.util.*;
 @Entity
 @Getter
 @Setter
-@Table(name = "expense_reports") // Translated table name
-public class ExpenseReport { // Translated entity name
+@Table(name = "expense_reports")
+public class ExpenseReport {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.AUTO)  // Use AUTO for UUID generation
     private UUID id;
+
 
     private String description;
 
@@ -40,19 +41,26 @@ public class ExpenseReport { // Translated entity name
     @Column(name = "submission_date")
     private LocalDate submissionDate = LocalDate.now();
 
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "collaborator_id")
+    private AppUser collaborateur;
 
-    @Getter
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "manager_id")
+    private AppUser manager;
+
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE})
     @JoinTable(
             name = "expense_report_files",
             joinColumns = {
-                    @JoinColumn(name = "expense_report_id", referencedColumnName = "expense_report_id") // Corrected here
+                    @JoinColumn(name = "expense_report_id", referencedColumnName = "id")  // Use "id" instead of "expense_report_id"
             },
             inverseJoinColumns = {
                     @JoinColumn(name = "id", referencedColumnName = "id")
             }
     )
-    private List<File> files = new ArrayList<>( );
+    private List<File> files = new ArrayList<>();
+
 
 
 

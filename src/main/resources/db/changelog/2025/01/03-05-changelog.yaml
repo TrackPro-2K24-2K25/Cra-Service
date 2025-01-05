@@ -1,0 +1,120 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1735913748458-1
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_company
+                  name: id
+                  type: UUID
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  name: address
+                  type: VARCHAR(255)
+              - column:
+                  name: pays
+                  type: VARCHAR(255)
+              - column:
+                  name: company_type
+                  type: VARCHAR(255)
+              - column:
+                  name: creation_date
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: nrcs
+                  type: INT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: nic
+                  type: INT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: siret
+                  type: INT
+              - column:
+                  name: legal_form
+                  type: VARCHAR(255)
+              - column:
+                  name: vat
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: share_capital
+                  type: INT
+              - column:
+                  name: rcscity
+                  type: VARCHAR(255)
+              - column:
+                  name: note
+                  type: VARCHAR(255)
+              - column:
+                  name: billing_conditions_id
+                  type: BIGINT
+              - column:
+                  name: delai_reglement_id
+                  type: UUID
+              - column:
+                  name: billing_currency_id
+                  type: UUID
+              - column:
+                  name: manager_id
+                  type: UUID
+            tableName: company
+  - changeSet:
+      id: 1735913748458-2
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: billing_conditions_id
+            baseTableName: company
+            constraintName: FK_COMPANY_ON_BILLING_CONDITIONS
+            referencedColumnNames: id
+            referencedTableName: invoicing_conditions
+  - changeSet:
+      id: 1735913748458-3
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: billing_currency_id
+            baseTableName: company
+            constraintName: FK_COMPANY_ON_BILLING_CURRENCY
+            referencedColumnNames: id
+            referencedTableName: invoicing_currency
+  - changeSet:
+      id: 1735913748458-4
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: delai_reglement_id
+            baseTableName: company
+            constraintName: FK_COMPANY_ON_DELAI_REGLEMENT
+            referencedColumnNames: id
+            referencedTableName: payment_term
+  - changeSet:
+      id: 1735913748458-5
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: manager_id
+            baseTableName: company
+            constraintName: FK_COMPANY_ON_MANAGER
+            referencedColumnNames: id
+            referencedTableName: app_user
+

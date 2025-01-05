@@ -19,8 +19,7 @@ import java.util.UUID;
 public class PaymentTerm {
 
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
 

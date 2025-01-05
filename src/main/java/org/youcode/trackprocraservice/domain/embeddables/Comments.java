@@ -1,11 +1,8 @@
-package org.youcode.trackprocraservice.domain.entities;
+package org.youcode.trackprocraservice.domain.embeddables;
 
 import jakarta.persistence.Embeddable;
 
-import lombok.*;
-
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Embeddable
 public class Comments {
