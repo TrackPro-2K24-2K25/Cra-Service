@@ -1,25 +1,20 @@
 spring:
+
   datasource:
-    url: jdbc:postgresql://localhost:5432/trackpro
-    username: ${DB_USERNAME:trackpro}
-    password: ${DB_PASSWORD:trackpro}
-    hikari:
-      minimum-idle: 5
-      maximum-pool-size: 20
-      max-lifetime: 1800000
-      auto-commit: true
-      connection-timeout: 30000
+    url: jdbc:postgresql://aws-0-eu-central-1.pooler.supabase.com:6543/postgres?user=postgres.njrreimpmqnuvkdndcnq&password=ibtihal2003A
+    driver-class-name: org.postgresql.Driver
+
   jpa:
     properties:
       hibernate:
         default_schema: public
         dialect: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-      ddl-auto: validate
+      ddl-auto: create
   docker:
     compose:
       file: src/main/docker/docker-compose.yml
-      enabled: true
+      enabled: false
 
 server:
   port: 8980
