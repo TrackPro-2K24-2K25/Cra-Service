@@ -12,11 +12,17 @@ import org.youcode.trackprocraservice.domain.enums.AccountStatus;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Preferences {
+
     @Enumerated(EnumType.STRING)
     private AccountStatus accountStatus;
+
     private boolean isEmailVerified;
     private boolean isPhoneVerified;
     private boolean isTwoFactorEnabled;
     private boolean isTermsAccepted;
     private String preferredLanguage;
+
+    public AccountStatus getAccountStatus() {
+        return accountStatus;
+    }
 }

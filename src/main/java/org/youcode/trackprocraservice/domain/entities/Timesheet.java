@@ -13,14 +13,14 @@ import org.youcode.trackprocraservice.domain.enums.Status;
 import java.time.YearMonth;
 import java.util.*;
 
+@Entity
 @Getter
 @Setter
-@Entity
 @AllArgsConstructor
 public class Timesheet {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
     @ElementCollection
@@ -35,7 +35,7 @@ public class Timesheet {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)  // Or appropriate cascade type
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "collaborator_id")
     private AppUser collaborateur;
 
@@ -43,7 +43,6 @@ public class Timesheet {
     @JoinColumn(name = "manager_id")
     private AppUser manager;
 
-    @Getter
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "timesheet_fichiers",
@@ -55,7 +54,7 @@ public class Timesheet {
     @ElementCollection
     @MapKeyColumn(name = "day")
     @Column(name = "value")
-    private Map<String, String> valeur_jour = new HashMap<>();
+    private Map<String, String> valeurJour = new HashMap<>();
 
     public Timesheet() {
         initializeDayValuesForMonth();
@@ -72,16 +71,8 @@ public class Timesheet {
         YearMonth yearMonth = YearMonth.of(year, month);
         int daysInMonth = yearMonth.lengthOfMonth();
 
-
         for (int day = 1; day <= daysInMonth; day++) {
-            valeur_jour.put("day" + day, "");
+            valeurJour.put("day" + day, "");
         }
     }
-
-
-
-
-
-
-
 }

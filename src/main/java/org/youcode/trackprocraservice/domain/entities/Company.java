@@ -12,7 +12,6 @@ import java.util.UUID;
 
 
 @Entity
-@Table(name="company")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -20,7 +19,7 @@ import java.util.UUID;
 public class Company {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
     // General company information
@@ -33,7 +32,6 @@ public class Company {
 
     @Column(name = "creation_date")
     private LocalDateTime creationDate;
-
 
     private int NRCS;  // Company Registration Number
     private int NIC;   // National Identification Number
@@ -51,39 +49,24 @@ public class Company {
     @OneToMany(mappedBy = "company") // MappedBy refers to the field in Mission referencing Company
     private List<Mission> missions;
 
-
     // relation
     @OneToMany(mappedBy = "company", fetch = FetchType.LAZY)
-    private List<BankAccount>  bankAccounts;
+    private List<BankAccount> bankAccounts; // Corrected mappedBy
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "billing_conditions_id")
     private InvoicingConditions invoicingConditions;
 
-
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "delai_reglement_id")
     private PaymentTerm paymentTerm;
-
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "billing_currency_id")
     private InvoicingCurrency invoicingCurrency;
 
-    // to add manager id
-
     @ManyToOne
-    @JoinColumn(name = "manager_id" , nullable = true)
+    @JoinColumn(name = "manager_id", nullable = true)
     private AppUser manager;
-
-
-
-
-
-
-
-
-
 
 }

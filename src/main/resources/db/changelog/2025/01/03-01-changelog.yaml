@@ -1,0 +1,38 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1735913590423-1
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_payment_term
+                  name: id
+                  type: UUID
+              - column:
+                  name: value
+                  type: VARCHAR(255)
+              - column:
+                  name: description
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: days
+                  type: INT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: is_default
+                  type: BOOLEAN
+              - column:
+                  constraints:
+                    nullable: false
+                  name: is_active
+                  type: BOOLEAN
+            tableName: payment_term
+

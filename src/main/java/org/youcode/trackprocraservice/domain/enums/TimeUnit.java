@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
-@AllArgsConstructor
 public enum TimeUnit {
 
     DAY("DAY"),
@@ -12,5 +11,8 @@ public enum TimeUnit {
     QUARTER_DAY("QUARTER_DAY");
 
     private final String label;
+    TimeUnit(String label) {
+        this.label = label;
+    }
 
 }
