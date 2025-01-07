@@ -17,7 +17,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/service-contracts")
+@RequestMapping("/api/v1/service-contracts")
 @Tag(name = "Service Contract", description = "APIs for managing service contracts")
 public class ServiceContractController {
 
