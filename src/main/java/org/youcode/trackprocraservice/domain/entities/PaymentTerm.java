@@ -15,7 +15,6 @@ import java.util.UUID;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "payment_term")
 public class PaymentTerm {
 
     @Id
