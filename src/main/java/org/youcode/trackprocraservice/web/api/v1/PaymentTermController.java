@@ -18,7 +18,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/payment-terms")
+@RequestMapping("/api/v1/payment-terms")
 @Tag(name = "Payment Term", description = "APIs for managing payment terms")
 public class PaymentTermController {
 
