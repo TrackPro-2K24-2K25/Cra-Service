@@ -58,7 +58,7 @@ public class InvoicingCurrencyServiceImpl implements InvoicingCurrencyService {
 
     @Override
     public void validateCurrencyValue(String value) {
-        if (!validationUtils.isValidCurrencyValue(value)) { // Call it on the instance
+        if (!validationUtils.isValidCurrencyValue(value)) {
             throw new InvoicingCurrencyValidationException("Invalid currency value: " + value);
         }
     }
