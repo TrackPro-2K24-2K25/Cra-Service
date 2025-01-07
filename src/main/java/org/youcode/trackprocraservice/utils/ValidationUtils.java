@@ -4,6 +4,7 @@ import org.youcode.trackprocraservice.domain.entities.PaymentTerm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.youcode.trackprocraservice.repository.interfaces.PaymentTermRepository;
+import org.youcode.trackprocraservice.repository.interfaces.ServiceContractRepository;
 
 import java.util.regex.Pattern;
 
@@ -19,9 +20,18 @@ public class ValidationUtils {
 
     @Autowired
     private PaymentTermRepository paymentTermRepository;
+    private ServiceContractRepository serviceContractRepository;
 
     public boolean isValidCurrencyValue(String value) {
         return value != null && VALID_CURRENCY_PATTERN.matcher(value).matches();
+    }
+
+    public boolean isValidName(String name) {
+        return name != null && !name.trim().isEmpty();
+    }
+
+    public boolean isNameUnique(String name) {
+        return !serviceContractRepository.findByName(name).isPresent();
     }
 
     public boolean isValidDescription(String description) {
@@ -39,9 +49,16 @@ public class ValidationUtils {
         return paymentTermRepository.findByValue(value).isEmpty();
     }
 
+
+
+    // validation function for PaymentTerm entity
     public boolean isValidPaymentTerm(String value, String description, int days) {
         return isValueUnique(value)
                 && isValidDescription(description)
                 && isValidDays(days);
+    }
+    // validation function for ServiceContract entity
+    public boolean isValidServiceContract(String name, String description) {
+        return isValidName(name) && isNameUnique(name) && isValidDescription(description);
     }
 }
