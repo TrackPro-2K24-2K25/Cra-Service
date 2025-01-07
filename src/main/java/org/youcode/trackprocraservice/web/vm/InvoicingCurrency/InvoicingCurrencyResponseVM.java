@@ -7,7 +7,6 @@ import lombok.*;
 @AllArgsConstructor
 public class InvoicingCurrencyResponseVM {
 
-    private String id;
     private String value;
 
 }

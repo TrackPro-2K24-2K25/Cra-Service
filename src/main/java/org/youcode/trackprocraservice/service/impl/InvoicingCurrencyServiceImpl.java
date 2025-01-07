@@ -18,9 +18,11 @@ import java.util.UUID;
 @Transactional
 public class InvoicingCurrencyServiceImpl implements InvoicingCurrencyService {
     private final InvoicingCurrencyRepository repository;
+    private final ValidationUtils validationUtils;
 
-    public InvoicingCurrencyServiceImpl(InvoicingCurrencyRepository repository) {
+    public InvoicingCurrencyServiceImpl(InvoicingCurrencyRepository repository, ValidationUtils validationUtils) {
         this.repository = repository;
+        this.validationUtils = validationUtils;
     }
 
     @Override
@@ -29,7 +31,6 @@ public class InvoicingCurrencyServiceImpl implements InvoicingCurrencyService {
         return repository.save(invoicingCurrency);
     }
 
-    // to use pagination : done
     @Override
     public Page<InvoicingCurrency> findAll(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
@@ -55,12 +56,9 @@ public class InvoicingCurrencyServiceImpl implements InvoicingCurrencyService {
         return true;
     }
 
-
-
-    // Validation
     @Override
     public void validateCurrencyValue(String value) {
-        if (!ValidationUtils.isValidCurrencyValue(value)) {
+        if (!validationUtils.isValidCurrencyValue(value)) { // Call it on the instance
             throw new InvoicingCurrencyValidationException("Invalid currency value: " + value);
         }
     }
