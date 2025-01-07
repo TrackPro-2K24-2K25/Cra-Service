@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -27,5 +28,8 @@ public class PaymentTerm {
     private int days;
     private boolean isDefault;
     private boolean isActive;
+
+    @OneToMany(mappedBy = "paymentTerm", fetch = FetchType.LAZY)
+    private List<InvoicingConditions> invoicingConditions;
 
 }
