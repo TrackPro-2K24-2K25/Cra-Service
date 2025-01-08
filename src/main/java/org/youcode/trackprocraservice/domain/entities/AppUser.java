@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.youcode.trackprocraservice.config.Encrypted;
 import org.youcode.trackprocraservice.domain.embeddables.*;
 import org.youcode.trackprocraservice.domain.enums.AccountStatus;
 import org.youcode.trackprocraservice.domain.enums.Role;
@@ -25,10 +26,14 @@ public class AppUser implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID id;
 
+    @Encrypted
     private String firstName;
+    @Encrypted
     private String lastName;
+    @Encrypted
     @Column(unique = true)
     private String email;
+
     @Column(unique = true)
     private String username;
     private String password;

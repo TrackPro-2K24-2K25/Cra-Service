@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.youcode.trackprocraservice.config.Encrypted;
 
 @Embeddable
 @Getter
@@ -13,7 +14,9 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ContactInfo {
 
+    @Encrypted
     private String phoneNumber;
+    @Encrypted
     private String alternativeEmail;
 
 }

@@ -12,9 +12,9 @@ public interface InvoicingConditionsMapper {
 
     InvoicingConditionsMapper INSTANCE = Mappers.getMapper(InvoicingConditionsMapper.class);
 
-    @Mapping(target = "paymentTerm.id", source = "paymentTermId")
+   // @Mapping(target = "paymentTerm.id", source = "paymentTermId")
     InvoicingConditions toEntity(InvoicingConditionsVM vm);
 
-    @Mapping(target = "paymentTermId", source = "paymentTerm.id")
+    //@Mapping(target = "paymentTermId", source = "paymentTerm.id")
     InvoicingConditionsResponseVM toResponseVM(InvoicingConditions entity);
 }
