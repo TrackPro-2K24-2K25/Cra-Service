@@ -14,7 +14,7 @@ import java.util.*;
 public class ExpenseReport {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)  // Use AUTO for UUID generation
+    @GeneratedValue(strategy = GenerationType.UUID)  // Use AUTO for UUID generation
     private UUID id;
 
 

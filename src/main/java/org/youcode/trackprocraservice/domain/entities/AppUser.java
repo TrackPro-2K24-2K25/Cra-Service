@@ -23,7 +23,7 @@ import java.util.UUID;
 @Entity
 public class AppUser implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Encrypted

@@ -20,7 +20,7 @@ import java.util.*;
 public class Timesheet {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @ElementCollection
