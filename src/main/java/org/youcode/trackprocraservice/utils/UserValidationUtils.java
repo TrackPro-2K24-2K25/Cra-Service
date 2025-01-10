@@ -2,7 +2,7 @@ package org.youcode.trackprocraservice.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.youcode.trackprocraservice.repository.interfaces.AppUserRepository;
+import org.youcode.trackprocraservice.repository.interfaces.user.AppUserRepository;
 
 @Component
 public class UserValidationUtils {
@@ -11,7 +11,7 @@ public class UserValidationUtils {
     private AppUserRepository appUserRepository;
 
     public boolean isValidEmail(String email) {
-        // Basic email validation (you can use a regex for more robust validation)
+        // Basic email validation using regex
         return email != null && email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$");
     }
 
