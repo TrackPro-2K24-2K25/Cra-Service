@@ -4,6 +4,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.youcode.trackprocraservice.exception.ExpenseReport.ExpenseReportInvalidOperationException;
+import org.youcode.trackprocraservice.exception.ExpenseReport.ExpenseReportNotFoundException;
+import org.youcode.trackprocraservice.exception.ExpenseReport.ExpenseReportValidationException;
 import org.youcode.trackprocraservice.exception.File.FileNotFoundException;
 import org.youcode.trackprocraservice.exception.File.FileStorageException;
 import org.youcode.trackprocraservice.exception.File.FileValidationException;
@@ -48,6 +51,21 @@ public class GlobalExceptionHandler {
         errorResponse.put("error", "File Storage Error");
         errorResponse.put("message", ex.getMessage());
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+    }
+
+    @ExceptionHandler(ExpenseReportNotFoundException.class)
+    public ResponseEntity<String> handleExpenseReportNotFoundException(ExpenseReportNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(ExpenseReportValidationException.class)
+    public ResponseEntity<String> handleExpenseReportValidationException(ExpenseReportValidationException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(ExpenseReportInvalidOperationException.class)
+    public ResponseEntity<String> handleExpenseReportInvalidOperationException(ExpenseReportInvalidOperationException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
     }
 
     @ExceptionHandler(Exception.class)
