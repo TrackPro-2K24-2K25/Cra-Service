@@ -20,7 +20,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/bank-accounts")
+@RequestMapping("/api/v1/bank-accounts")
 @Tag(name = "Bank Account Management", description = "APIs for managing bank accounts")
 public class BankAccountController {
 
