@@ -2,6 +2,7 @@ package org.youcode.trackprocraservice.domain.embeddables;
 
 import jakarta.persistence.Embeddable;
 import lombok.*;
+import org.youcode.trackprocraservice.config.Encrypted;
 
 @Embeddable
 @Getter
@@ -10,6 +11,7 @@ import lombok.*;
 @AllArgsConstructor
 public class SecurityInfo {
     private String securityQuestion;
+    @Encrypted
     private String securityAnswer;
     private boolean isLocked;
     private int failedLoginAttempts;

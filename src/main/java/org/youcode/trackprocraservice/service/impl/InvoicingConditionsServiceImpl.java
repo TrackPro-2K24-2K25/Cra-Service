@@ -7,8 +7,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.youcode.trackprocraservice.domain.entities.InvoicingConditions;
 import org.youcode.trackprocraservice.domain.entities.PaymentTerm;
-import org.youcode.trackprocraservice.exception.InvoicingCurrency.InvoicingCurrencyNotFoundException;
-import org.youcode.trackprocraservice.exception.InvoicingCurrency.InvoicingCurrencyValidationException;
+import org.youcode.trackprocraservice.exception.InvoicingConditions.InvoicingConditionsNotFoundException;
+import org.youcode.trackprocraservice.exception.InvoicingConditions.InvoicingConditionsValidationException;
 import org.youcode.trackprocraservice.repository.interfaces.InvoicingConditionsRepository;
 import org.youcode.trackprocraservice.repository.interfaces.PaymentTermRepository;
 import org.youcode.trackprocraservice.service.interfaces.InvoicingConditionsService;
@@ -37,12 +37,12 @@ public class InvoicingConditionsServiceImpl implements InvoicingConditionsServic
                 invoicingConditions.getDaysForDiscount(),
                 invoicingConditions.getLateFeeRate(),
                 invoicingConditions.getPaymentTerm().getId())) {
-            throw new InvoicingCurrencyValidationException("Invalid invoicing conditions data");
+            throw new InvoicingConditionsValidationException("Invalid invoicing conditions data");
         }
 
         // Fetch the PaymentTerm
         PaymentTerm paymentTerm = paymentTermRepository.findById(invoicingConditions.getPaymentTerm().getId())
-                .orElseThrow(() -> new InvoicingCurrencyValidationException("PaymentTerm not found with ID: " + invoicingConditions.getPaymentTerm().getId()));
+                .orElseThrow(() -> new InvoicingConditionsValidationException("PaymentTerm not found with ID: " + invoicingConditions.getPaymentTerm().getId()));
 
         // Set the PaymentTerm in the InvoicingConditions entity
         invoicingConditions.setPaymentTerm(paymentTerm);
@@ -61,7 +61,7 @@ public class InvoicingConditionsServiceImpl implements InvoicingConditionsServic
     @Override
     public InvoicingConditions findById(UUID id) {
         return repository.findById(id)
-                .orElseThrow(() -> new InvoicingCurrencyNotFoundException(id));
+                .orElseThrow(() -> new InvoicingConditionsNotFoundException(id));
     }
 
 
@@ -73,16 +73,16 @@ public class InvoicingConditionsServiceImpl implements InvoicingConditionsServic
                 updatedInvoicingConditions.getDaysForDiscount(),
                 updatedInvoicingConditions.getLateFeeRate(),
                 updatedInvoicingConditions.getPaymentTerm().getId())) {
-            throw new InvoicingCurrencyValidationException("Invalid invoicing conditions data");
+            throw new InvoicingConditionsValidationException("Invalid invoicing conditions data");
         }
 
         // Fetch the existing entity
         InvoicingConditions existingEntity = repository.findById(id)
-                .orElseThrow(() -> new InvoicingCurrencyNotFoundException(id));
+                .orElseThrow(() -> new InvoicingConditionsNotFoundException(id));
 
         // Fetch the PaymentTerm
         PaymentTerm paymentTerm = paymentTermRepository.findById(updatedInvoicingConditions.getPaymentTerm().getId())
-                .orElseThrow(() -> new InvoicingCurrencyValidationException("PaymentTerm not found with ID: " + updatedInvoicingConditions.getPaymentTerm().getId()));
+                .orElseThrow(() -> new InvoicingConditionsValidationException("PaymentTerm not found with ID: " + updatedInvoicingConditions.getPaymentTerm().getId()));
 
         // Update the fields
         existingEntity.setPaymentTerm(paymentTerm);
@@ -98,7 +98,7 @@ public class InvoicingConditionsServiceImpl implements InvoicingConditionsServic
     @Override
     public boolean delete(UUID id) {
         if (!repository.existsById(id)) {
-            throw new InvoicingCurrencyNotFoundException(id);
+            throw new InvoicingConditionsNotFoundException(id);
         }
         repository.deleteById(id);
         return true;
