@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Mission {
@@ -55,7 +57,7 @@ public class Mission {
     private Company company;
 
     @ManyToOne
-    @JoinColumn(name = "paymentTermId")
+    @JoinColumn(name = "paymentTerm_id")
     private PaymentTerm paymentTerm;
 
     @ManyToOne
@@ -67,14 +69,14 @@ public class Mission {
     private AppUser collaborateur;
 
     @ManyToOne
-    @JoinColumn(name = "bankAccountId")
+    @JoinColumn(name = "bankAccount_id")
     private BankAccount bankAccount;
 
     @ManyToOne
-    @JoinColumn(name = "invoicingConditionId")
+    @JoinColumn(name = "invoicingCondition_id")
     private InvoicingConditions invoicingCondition;
 
     @ManyToOne
-    @JoinColumn(name = "serviceContractId")
+    @JoinColumn(name = "serviceContract_id")
     private ServiceContract serviceContract;
 }
