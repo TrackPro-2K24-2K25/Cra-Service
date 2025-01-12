@@ -21,7 +21,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/missions")
+@RequestMapping("/api/v1/missions")
 @Tag(name = "Mission Controller", description = "APIs for managing missions")
 public class MissionController {
 
